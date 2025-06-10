@@ -15,13 +15,13 @@ class player:
     def play(self):
         card_played_by_player=random.choise(self.cards)
         self.cards.remove(card_played_by_player)
-        
-        self.newcard='''take a card'''
+       
         self.history.append(card_played_by_player)
         self.turn_count+=1
         self.number_of_cards+=1
         print(f"{card_played_by_player}")
-            #card_symbol_icon
+            #card_symbol_icon\
+          
           
 
     def __str__(self):
@@ -34,32 +34,31 @@ class deck():
         self.fill_deck()
 
     def fill_deck(self):
-        icons=["♥", "♦", "♣", "♠"] 
+        
         values=["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
         suits=[Symbol("red","♥"), Symbol("red","♦"),Symbol("black","♣"),Symbol("black","♠")]
         # cards contain all the 52 cards
-         for suit in suits:
+        for suit in suits:
             for value in values:
-                self.cards.append(Card(suit.color, suit.icon, value))
+                self.cards.append(card(suit.color, suit.icon, value))
         # Ensure the deck has 52 cards
-    '''will fill cards with a complete card game'''
+        #will fill cards with a complete card game'''
 
 
     def shuffle(self):
-    '''shuffle all the list of cards.'''
+    #shuffle all the list of cards.'''
         random.shuffle(self.cards)
-        print({self.cards})
+        print("{self.cards}")
 
 
-    def distribute(list_of_players: list):
-    '''will take a list of Player as parameter and will distribute the cards evenly between all the players.'''
-        
+    def distribute(self,list_of_players: list):
+    #will take a list of Player as parameter and will distribute the cards evenly between all the players.'''
+        no_of_players = len(list_of_players)
+        cards_per_player = len(self.cards) // no_of_players
+       
             
-              card_index = 0
-        for i, player in enumerate(players):
+        card_index = 0
+        for i, player in enumerate(list_of_players):
             player_cards = self.cards[card_index : card_index + cards_per_player]
-            if i < remaining_cards: # Distribute remaining cards one by one
-                player_cards.append(self.cards[len(self.cards) - 1 - i]) # Distribute from the end
-            player.cards.extend(player_cards)
             player.number_of_cards = len(player.cards) # Update number of cards
-            card_index += cards_per_player
+
